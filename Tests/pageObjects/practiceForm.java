@@ -82,8 +82,8 @@ public class practiceForm {
 		driver.findElement(submitButton).sendKeys(Keys.RETURN);
 	}
 	
-	public WebElement modal() {
-		return driver.findElement(submitModal);
+	public String modal() {
+		return driver.findElement(submitModal).getText();
 	}
 	
 	
