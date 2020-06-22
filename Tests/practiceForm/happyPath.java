@@ -10,7 +10,6 @@ import pageObjects.practiceForm;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
@@ -49,30 +48,26 @@ public class happyPath extends BaseTest {
 		objects.address("21 Test Street \nTest Town");
 		objects.submitForm();
 
-		String actualText = objects.modal();
-		String expectedText = "Thanks for submitting the form";
+		String actualText = objects.modalHeader();
+		String expectedText = "Thanks for submitting the forms";
 
-		if (actualText == expectedText) {
+		logger.info("Expected text: " + expectedText);
+		logger.info("Actual text: " + actualText);
 
-			logger.info("Expected text: "+ expectedText);
+		Assert.assertEquals(actualText, expectedText);
 
-		} else {
-
-			Assert.assertEquals(actualText, expectedText);
-		}
 	}
 
 	@AfterMethod
 	public void closeBrowser(ITestResult result) throws Exception {
-		
-			if(result.getStatus()==ITestResult.FAILURE) {
-			
+
+		if (result.getStatus() == ITestResult.FAILURE) {
+			Thread.sleep(1000);
 			String temp = screenCaptureBase64.CaptureScreenShot64(driver);
-			logger.fail(result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromBase64String(temp).build());
-			
-							
+			logger.fail(result.getThrowable().getMessage(),
+					MediaEntityBuilder.createScreenCaptureFromBase64String(temp).build());
 		}
-		
+
 		extent.flush();
 		driver.close();
 	}

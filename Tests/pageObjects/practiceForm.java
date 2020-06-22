@@ -6,7 +6,6 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -82,11 +81,9 @@ public class practiceForm {
 		driver.findElement(submitButton).sendKeys(Keys.RETURN);
 	}
 	
-	public String modal() {
+	public String modalHeader() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(submitModal)));
 		return driver.findElement(submitModal).getText();
 	}
-	
-	
-	
-	
 }
