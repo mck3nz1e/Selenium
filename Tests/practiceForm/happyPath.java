@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import Constant.File_Path;
 import General.BaseTest;
+import General.Retry;
 import ScreenShots.screenCaptureBase64;
 import pageObjects.practiceForm;
 
@@ -35,7 +36,7 @@ public class happyPath extends BaseTest {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
-	@Test
+	@Test(retryAnalyzer = Retry.class)
 	public void submitForm() {
 
 		practiceForm objects = new practiceForm(driver);
@@ -49,7 +50,7 @@ public class happyPath extends BaseTest {
 		objects.submitForm();
 
 		String actualText = objects.modalHeader();
-		String expectedText = "Thanks for submitting the forms";
+		String expectedText = "Thanks for submitting the formz";
 
 		logger.info("Expected text: " + expectedText);
 		logger.info("Actual text: " + actualText);
