@@ -5,3 +5,4 @@ Browser test automation using Selenium Webdriver
 - Automated functional tests
 - Page Object Model
 - TestNG
+- Extent Reports
